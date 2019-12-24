@@ -18,3 +18,16 @@ after_success:
   - docker push manomit/multi-nginx
   - docker push manomit/multi-server
   - docker push manomit/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker-demo"
+  env: "MultiDockerDemo-env"
+  bucket_name: "elasticbeanstalk-us-east-1-072013170116"
+  bucket_path: "multi-docker-demo"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
