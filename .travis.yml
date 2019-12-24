@@ -13,3 +13,8 @@ after_success:
   - docker build -t manomit/multi-nginx ./nginx
   - docker build -t manomit/multi-server ./server
   - docker build -t manomit/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push manomit/multi-client
+  - docker push manomit/multi-nginx
+  - docker push manomit/multi-server
+  - docker push manomit/multi-worker
